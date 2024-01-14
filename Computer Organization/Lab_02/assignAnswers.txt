@@ -1,0 +1,15 @@
+average.c
+1.	The line that causes the segmentation fault is line 22: "scanf("%d", input);"
+
+2.	The way to fix it is to turn input into &input
+
+3.	The bug is after the read_value function finishes, the sum value gets deallocated and returned back into the computer. The reason for this is because we are passing the current value of sum into the function, not the pointer to sum. So sum stays as 0, and 0/value = 0.
+
+4. To fix it, you change read_values(sum) to read_values(&sum), which sends a pointer to sum into the function. Then in the function, you change the parameter from double sum to double *sum, which takes the pointer and returns the value. Then you change the rest of the "sum"s in read_values and change them to *sum as well, which changes the value of the variable the pointer is pointing to.
+
+appendTest.c
+1.	The output is not expected, it has an extra 2 random characters at the end: "HELLO!""hello!"Jm
+2.	The output is very much not expected, as it has merged in a weird way with the same inputs from the first test:	"HI!""hi!"ello!"Jm
+3.	This output is also not expected, as it seems to have printed fragmented and out of order with a lot missing: thank you!""I am fine, thank you!".
+
+I believe the reason for these errors is the program is not allocating enough space to include the "\0" needed at the end of all strings. Because the extra space is not allocated, it is filled with random characters, hence the "Jm". But it also means the program doesn't know when the string ends, so the strings keep merging and morphing together into a jumbled mess of memory. The way to fix it is to change line 17 to (k = 0; k < s2len+1;k++), adding the +1.

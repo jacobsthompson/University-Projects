@@ -1,0 +1,22 @@
+variables:
+current input
+total amount of inputs
+total amount of even numbers
+total amount of odd numbers
+averge of even numbers
+average of odd numbers
+
+while the input is not 0:
+	print "Enter the nth number"
+	take in a number
+	check if that number is 0. if its 0, break
+	check if the number is even or odd
+	if even, increase the even count by 1 and add the number to the even average varibale
+	if odd, increase the odd count by 1 and add the number to the odd average varibale
+
+if 0 was inputted, break
+
+divide the average even number variable by the total even numbers
+divide the average odd number variable by the total odd numbers
+
+print answers
